@@ -376,11 +376,17 @@ textarea {
 
 .output-content p {
     font-family: "fira code", monospace;
-    font-weight: 800;
+    font-weight: bold;
     text-align: center;
     white-space: pre-line;
     color: rgba(255, 255, 255, 0.679);
 }
+
+.output-content a {
+    color:rgba(24, 200, 239, 0.851);
+    text-decoration: underline;
+}
+
 
 @media (min-width: 810px) and (max-width: 1199px) {
     .container {

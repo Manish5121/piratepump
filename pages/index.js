@@ -1,7 +1,22 @@
 import Head from 'next/head';
+import ReactMarkdown from 'react-markdown';
 import { useState } from 'react';
-import Image from 'next/image';
-import buildspaceLogo from '../assets/buildspace-logo.png';
+
+const CustomLink = ({ node, ...props }) => (
+  <a {...props} target="_blank" rel="noopener noreferrer" />
+);
+
+const MyComponent = ({markdownText}) => {
+  
+  return (
+    <ReactMarkdown
+      children={markdownText}
+      components={{
+        a: CustomLink,
+      }}
+    />
+  );
+};
 
 const Home = () => {
   const [userInput, setUserInput] = useState('');
@@ -30,6 +45,7 @@ const Home = () => {
 
   setApiOutput(`${output.text}`);
   setIsGenerating(false);
+
 }
   return (
     <div className="root">
@@ -64,7 +80,9 @@ const Home = () => {
             </div>
           </div>
           <div className="output-content">
-            <p>{apiOutput}</p>
+            <MyComponent markdownText={apiOutput} /> 
+            {/* <ReactMarkdown >{apiOutput}</ReactMarkdown> */}
+            {/* <p>{apiOutput}</p> */}
           </div>
         </div>
       )}
