@@ -3,7 +3,7 @@
 body {
     margin: 0;
     padding: 0;
-    font-family: 'Manrope', sans-serif;
+    font-family: 'Cal Sans', sans-serif;
 }
 
 .root {
@@ -25,7 +25,6 @@ body {
     align-items: center;
     flex: 0 0 auto;
     flex-flow: column nowrap;
-    gap: 10px;
     height: fit-content;
     max-width: 975px;
     overflow: auto;
@@ -66,6 +65,12 @@ body {
     color: rgba(255, 255, 255, 0.75);
 }
 
+
+.prompt-button-container{
+    display: flex;
+    align-items: center;
+}
+
 .prompt-container {
     place-content: flex-end center;
     align-items: center;
@@ -76,6 +81,7 @@ body {
     height: min-content;
     padding: 0px;
     width: min-content;
+    overflow: hidden;
 }
 
 .prompt-box {
@@ -93,14 +99,13 @@ body {
     flex: 0 0 auto;
     flex-flow: column nowrap;
     gap: 10px;
-    height: 150px;
-    overflow: hidden;
+    height: 25px;
+    overflow: hidden; 
     padding: 20px;
     position: relative;
     width: 610px;
     max-width: 1200px;
     will-change: transform;
-    overflow: auto;
     outline: none;
     resize: none;
     font-size: 16px;
@@ -114,12 +119,13 @@ body {
 }
 
 textarea {
-    font-family: 'Manrope', sans-serif;
+    font-family: 'Fira Code', monospace;
 }
 
 
 .prompt-box:focus {
-    border-color:rgba(255, 255, 255, 0.75)
+    border-color:rgba(255, 255, 255, 0.75);
+    border-style: dashed;
 }
 
 
@@ -209,16 +215,19 @@ textarea {
 
 .badge-container {
     display: flex;
+    align-items: center;
+    justify-content: center;
     bottom: 20px;
-    flex: 0 0 auto;
-    height: auto;
-    left: 20px;
+    /* flex: 0 0 auto;
+    height: auto; */
+    transform: translateX(-50%);
+    left: 50%;
     position: fixed;
     width: auto;
     z-index: 1;
 }
 
-.badge-container a {
+/* .badge-container a {
     border-bottom-width: 1px;
     border-color: rgba(255, 255, 255, 0.1);
     border-left-width: 1px;
@@ -237,14 +246,36 @@ textarea {
     color: #fff;
     padding: 12px;
     text-decoration: none;
-}
+} */
+.badge-container a {
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 54.3478% / 238.095%;
+    background-color: rgb(0, 0, 0);
+    color: #fff;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    line-height: 1.2em;
+    padding: 12px;
+    text-decoration: none;
+    transition: all 0.2s ease;
+  }
+  
+  .badge-container a:hover {
+    background-color: #fff;
+    color: #000;
+    border-color: rgba(0, 0, 0, 0.1);
+    /* transform: scale(1.05);
+    transform: translateX(-50%); */
+  }
+  
 
 .badge {
     display: flex;
     align-items: center;
 }
 
-.badge img {
+/* .badge img {
     width: 21px;
     height: 17px;
     image-rendering: pixelated;
@@ -254,7 +285,7 @@ textarea {
     transform: none;
     transform-origin: 50% 50% 0px;
     padding-right: 5px;
-}
+} */
 
 .badge p {
     margin: 0;
@@ -264,9 +295,9 @@ textarea {
     transition: all .2s ease-in-out;
 }
 
-.grow:hover {
+/* .grow:hover {
     transform: scale(1.1);
-}
+} */
 
 .output {
     place-content: center flex-start;
@@ -275,12 +306,35 @@ textarea {
     flex: 0 0 auto;
     flex-flow: column nowrap;
     gap: 10px;
-    height: min-content;
+    height: 500px;
     max-width: 1200px;
-    overflow: hidden;
+    overflow-y: scroll;
+    max-height: 70vh;
+    width: 750px;
+    overflow-x: hidden;
+    padding-right: 2.5rem;
+    padding-left: 2.5rem;
     position: relative;
-    width: 100%;
 }
+.output::-webkit-scrollbar {
+    width: .5em;
+  }
+  
+.output::-webkit-scrollbar-track {
+    border-radius: 8px;
+    background-color: #363636;
+    box-shadow: inset 0 0 6px rgba(0,0,0,.3)
+  }
+  
+  /* The scrollbar handle */
+.output::-webkit-scrollbar-thumb {
+    border-radius: 8px;
+    background-color: #e7e7e7;
+    border: 1px solid #cacaca
+}
+  
+  
+
 
 .output-header-container {
     place-content: center;
@@ -321,9 +375,11 @@ textarea {
 }
 
 .output-content p {
+    font-family: "fira code", monospace;
+    font-weight: 800;
     text-align: center;
     white-space: pre-line;
-    color: rgba(255, 255, 255, 0.5);
+    color: rgba(255, 255, 255, 0.679);
 }
 
 @media (min-width: 810px) and (max-width: 1199px) {
@@ -357,6 +413,7 @@ textarea {
         width: 100%;
     }
 }
+
 
 @media (max-width: 600px) {
     .container {
@@ -413,3 +470,88 @@ textarea {
         transform: rotate(360deg);
     }
 }
+
+
+.button {
+  padding: 0.6em 2em;
+  border: none;
+  outline: none;
+  color: rgb(255, 255, 255);
+  /* background: #111; */
+  cursor: pointer;
+  position: relative;
+  z-index: 0;
+  border-radius: 10px;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.button:before {
+  content: "";
+  background: linear-gradient(
+    45deg,
+    #ff0000,
+    #ff7300,
+    #fffb00,
+    #48ff00,
+    #00ffd5,
+    #002bff,
+    #7a00ff,
+    #ff00c8,
+    #ff0000
+  );
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  background-size: 400%;
+  z-index: -1;
+  filter: blur(5px);
+  -webkit-filter: blur(5px);
+  width: calc(100% + 4px);
+  height: calc(100% + 4px);
+  animation: glowing-button 20s linear infinite;
+  transition: opacity 0.3s ease-in-out;
+  border-radius: 50%;
+}
+
+@keyframes glowing-button {
+  0% {
+    background-position: 0 0;
+  }
+  50% {
+    background-position: 400% 0;
+  }
+  100% {
+    background-position: 0 0;
+  }
+}
+
+.button:after {
+  z-index: -1;
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #222;
+  left: 0;
+  top: 0;
+  border-radius: 50%;
+}
+
+.button:hover:before {
+    opacity: 0.6;
+  }
+  
+.button:hover:after {
+    opacity: 0.1;
+} 
+
+.button {
+    font-size: 2em; /* change the font size to make the button larger */
+    padding: 1em; /* increase the padding for more space around the icon */
+    border-radius: 50%; /* make the button circular */
+    margin-left: 20px;
+    /* rest of the styles here */
+  }
+  
